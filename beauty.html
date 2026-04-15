@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confidens — салон красоты | Москва</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--rose:#E8B4B8;--deep:#6B3A5D;--bg:#FDF6F7;--accent:#C2185B;--text:#3E2723;--light:#F9E8EA;--gold:#D4AF37}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text);background:var(--bg);line-height:1.6}
+a{text-decoration:none;color:inherit}
+
+.hero{position:relative;min-height:90vh;background:linear-gradient(135deg,#6B3A5D 0%,#9C5883 50%,#C2185B 100%);display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 70%,rgba(232,180,184,0.15) 0%,transparent 60%)}
+.hero-content{position:relative;z-index:1;padding:2rem}
+.hero h1{font-size:3rem;font-weight:300;letter-spacing:0.15em;margin-bottom:0.3rem}
+.hero .subtitle{font-size:1.1rem;color:var(--rose);margin-bottom:0.5rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:300}
+.hero .address{font-size:0.95rem;opacity:0.8;margin-bottom:2rem}
+.hero .photo-placeholder{width:260px;height:260px;background:rgba(232,180,184,0.2);border-radius:50%;margin:0 auto 2rem;display:flex;align-items:center;justify-content:center;font-size:0.9rem;color:var(--rose);border:2px solid rgba(232,180,184,0.3)}
+
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:50px;font-size:1rem;font-weight:600;cursor:pointer;border:none;transition:transform 0.2s,box-shadow 0.2s}
+.btn:active{transform:scale(0.97)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{box-shadow:0 4px 20px rgba(194,24,91,0.4)}
+.btn-outline{background:transparent;color:#fff;border:2px solid var(--rose)}
+.btn-outline:hover{background:var(--rose);color:var(--deep)}
+.btn-telegram{background:#0088cc;color:#fff}
+.btn-telegram:hover{box-shadow:0 4px 20px rgba(0,136,204,0.4)}
+
+section{padding:4rem 1.5rem;max-width:800px;margin:0 auto}
+.section-title{font-size:1.8rem;font-weight:300;color:var(--deep);margin-bottom:2rem;text-align:center;letter-spacing:0.05em}
+.section-title::after{content:'';display:block;width:60px;height:2px;background:var(--accent);margin:12px auto 0}
+
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+.service-card{background:#fff;border-radius:20px;padding:28px;box-shadow:0 2px 12px rgba(107,58,93,0.06);transition:transform 0.2s;border:1px solid rgba(232,180,184,0.2)}
+.service-card:hover{transform:translateY(-4px)}
+.service-card .icon{font-size:2rem;margin-bottom:12px}
+.service-card h3{font-size:1.05rem;margin-bottom:8px;color:var(--deep)}
+.service-card .desc{font-size:0.85rem;color:#8B7B7D;margin-bottom:12px}
+.service-card .price{font-weight:600;color:var(--accent);font-size:1.1rem}
+
+.portfolio{background:var(--light);padding:4rem 1.5rem;margin:0}
+.portfolio-inner{max-width:800px;margin:0 auto}
+.portfolio-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.portfolio-item{height:200px;background:#fff;border-radius:16px;display:flex;align-items:center;justify-content:center;color:var(--rose);font-size:0.85rem;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+
+.masters{text-align:center}
+.masters-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:24px}
+.master-card{text-align:center}
+.master-card .avatar{width:120px;height:120px;background:var(--light);border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:var(--rose);border:3px solid rgba(232,180,184,0.3)}
+.master-card h3{font-size:1rem;margin-bottom:4px;color:var(--deep)}
+.master-card .spec{font-size:0.85rem;color:#8B7B7D}
+.master-card .exp{font-size:0.8rem;color:var(--accent);margin-top:4px}
+
+.reviews .review-card{background:#fff;border-radius:20px;padding:24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.04);border-left:4px solid var(--rose)}
+.reviews .stars{color:var(--gold);font-size:1.1rem;margin-bottom:8px}
+.reviews .text{font-size:0.95rem;color:#5C4033}
+.reviews .author{font-size:0.85rem;color:#8B7B7D;font-weight:600;margin-top:8px}
+
+.booking{text-align:center}
+.booking p{margin-bottom:2rem;color:#5C4033}
+.booking-form{display:flex;flex-direction:column;gap:12px;max-width:400px;margin:0 auto}
+.booking-form input,.booking-form select,.booking-form textarea{padding:14px 18px;border:2px solid var(--light);border-radius:12px;font-size:1rem;background:#fff;color:var(--text);outline:none;transition:border-color 0.2s;font-family:inherit}
+.booking-form input:focus,.booking-form select:focus,.booking-form textarea:focus{border-color:var(--accent)}
+
+.contacts{text-align:center}
+.contacts .info-row{display:flex;flex-wrap:wrap;gap:24px;justify-content:center;margin-bottom:2rem}
+.contacts .info-item{background:#fff;padding:20px 24px;border-radius:20px;box-shadow:0 2px 8px rgba(0,0,0,0.04);min-width:200px;border:1px solid rgba(232,180,184,0.2)}
+.contacts .info-item .label{font-size:0.8rem;color:#8B7B7D;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px}
+.contacts .info-item .value{font-size:1rem;font-weight:600}
+.map-placeholder{width:100%;height:250px;background:var(--light);border-radius:20px;display:flex;align-items:center;justify-content:center;color:var(--rose);font-size:0.9rem;margin-top:2rem}
+
+footer{background:var(--deep);color:rgba(255,255,255,0.6);text-align:center;padding:2rem 1.5rem;font-size:0.85rem}
+footer a{color:var(--rose)}
+
+@media(max-width:480px){
+  .hero h1{font-size:2.2rem}
+  .cta-row{flex-direction:column;align-items:center}
+  .btn{width:100%;max-width:280px;justify-content:center}
+  section{padding:3rem 1rem}
+  .services-grid,.masters-grid{grid-template-columns:1fr}
+  .portfolio-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="photo-placeholder">📸 Фото студии</div>
+    <h1>Confidens</h1>
+    <p class="subtitle">Салон красоты</p>
+    <p class="address">📍 Б. Афанасьевский пер., 41, Москва</p>
+    <div class="cta-row">
+      <a href="tel:+79852975309" class="btn btn-primary">📞 Позвонить</a>
+      <a href="https://t.me/+79852975309" class="btn btn-telegram">✈️ Telegram</a>
+      <a href="#booking" class="btn btn-outline">📅 Записаться</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Наши услуги</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="icon">💇‍♀️</div>
+      <h3>Стрижка и укладка</h3>
+      <p class="desc">Женские и мужские стрижки, укладки, вечерние причёски</p>
+      <p class="price">от 1 500 ₽</p>
+    </div>
+    <div class="service-card">
+      <div class="icon">🎨</div>
+      <h3>Окрашивание</h3>
+      <p class="desc">Однотонное, мелирование, балаяж, шатуш, air-touch</p>
+      <p class="price">от 3 000 ₽</p>
+    </div>
+    <div class="service-card">
+      <div class="icon">💅</div>
+      <h3>Маникюр и педикюр</h3>
+      <p class="desc">Классический, аппаратный, гель-лак, дизайн ногтей</p>
+      <p class="price">от 1 200 ₽</p>
+    </div>
+    <div class="service-card">
+      <div class="icon">✨</div>
+      <h3>Косметология</h3>
+      <p class="desc">Чистка лица, пилинги, мезотерапия, уходовые процедуры</p>
+      <p class="price">от 2 500 ₽</p>
+    </div>
+    <div class="service-card">
+      <div class="icon">👁️</div>
+      <h3>Брови и ресницы</h3>
+      <p class="desc">Коррекция и окрашивание бровей, наращивание ресниц</p>
+      <p class="price">от 800 ₽</p>
+    </div>
+    <div class="service-card">
+      <div class="icon">💆‍♀️</div>
+      <h3>Массаж</h3>
+      <p class="desc">Расслабляющий, антицеллюлитный, лимфодренажный</p>
+      <p class="price">от 2 000 ₽</p>
+    </div>
+  </div>
+</section>
+
+<div class="portfolio">
+  <div class="portfolio-inner">
+    <h2 class="section-title">Портфолио</h2>
+    <div class="portfolio-grid">
+      <div class="portfolio-item">📸 Работа 1</div>
+      <div class="portfolio-item">📸 Работа 2</div>
+      <div class="portfolio-item">📸 Работа 3</div>
+      <div class="portfolio-item">📸 Работа 4</div>
+      <div class="portfolio-item">📸 Работа 5</div>
+      <div class="portfolio-item">📸 Работа 6</div>
+    </div>
+  </div>
+</div>
+
+<section class="masters">
+  <h2 class="section-title">Наши мастера</h2>
+  <div class="masters-grid">
+    <div class="master-card">
+      <div class="avatar">📸 Фото</div>
+      <h3>Анна Петрова</h3>
+      <p class="spec">Стилист-колорист</p>
+      <p class="exp">Опыт 8 лет</p>
+    </div>
+    <div class="master-card">
+      <div class="avatar">📸 Фото</div>
+      <h3>Елена Козлова</h3>
+      <p class="spec">Мастер маникюра</p>
+      <p class="exp">Опыт 5 лет</p>
+    </div>
+    <div class="master-card">
+      <div class="avatar">📸 Фото</div>
+      <h3>Ирина Волкова</h3>
+      <p class="spec">Косметолог</p>
+      <p class="exp">Опыт 10 лет</p>
+    </div>
+  </div>
+</section>
+
+<section class="reviews">
+  <h2 class="section-title">Отзывы</h2>
+  <div class="review-card">
+    <div class="stars">★★★★★</div>
+    <p class="text">«Хожу к Анне уже два года — каждый раз ухожу довольная. Лучший балаяж в районе!»</p>
+    <p class="author">— Наталья М.</p>
+  </div>
+  <div class="review-card">
+    <div class="stars">★★★★★</div>
+    <p class="text">«Записалась на маникюр по рекомендации подруги. Очень аккуратная работа, приятная атмосфера, вернусь обязательно.»</p>
+    <p class="author">— Дарья В.</p>
+  </div>
+  <div class="review-card">
+    <div class="stars">★★★★☆</div>
+    <p class="text">«Чистка лица прошла отлично. Кожа сияет! Единственное — хотелось бы чуть больше парковочных мест рядом.»</p>
+    <p class="author">— Юлия К.</p>
+  </div>
+</section>
+
+<section class="booking" id="booking">
+  <h2 class="section-title">Онлайн-запись</h2>
+  <p>Выберите услугу и удобное время — мы подтвердим запись</p>
+  <form class="booking-form" onsubmit="event.preventDefault();alert('Спасибо! Мы свяжемся с вами для подтверждения записи.')">
+    <input type="text" placeholder="Ваше имя" required>
+    <input type="tel" placeholder="Телефон" required>
+    <select>
+      <option>Выберите услугу</option>
+      <option>Стрижка и укладка</option>
+      <option>Окрашивание</option>
+      <option>Маникюр / Педикюр</option>
+      <option>Косметология</option>
+      <option>Брови и ресницы</option>
+      <option>Массаж</option>
+    </select>
+    <input type="date" required>
+    <select>
+      <option>Удобное время</option>
+      <option>10:00 — 12:00</option>
+      <option>12:00 — 14:00</option>
+      <option>14:00 — 16:00</option>
+      <option>16:00 — 18:00</option>
+      <option>18:00 — 20:00</option>
+    </select>
+    <textarea placeholder="Комментарий (необязательно)" rows="3"></textarea>
+    <button type="submit" class="btn btn-primary" style="border:none">📅 Записаться</button>
+  </form>
+</section>
+
+<section class="contacts">
+  <h2 class="section-title">Контакты</h2>
+  <div class="info-row">
+    <div class="info-item">
+      <p class="label">Адрес</p>
+      <p class="value">Б. Афанасьевский пер., 41</p>
+    </div>
+    <div class="info-item">
+      <p class="label">Телефон</p>
+      <p class="value"><a href="tel:+79852975309">+7 (985) 297-53-09</a></p>
+    </div>
+    <div class="info-item">
+      <p class="label">Часы работы</p>
+      <p class="value">Пн-Вс 10:00 — 21:00</p>
+    </div>
+  </div>
+  <div class="map-placeholder">🗺️ Яндекс.Карта (вставить iframe)</div>
+</section>
+
+<footer>
+  <p>© 2026 Confidens, салон красоты · <a href="tel:+79852975309">+7 (985) 297-53-09</a></p>
+  <p style="margin-top:8px;font-size:0.75rem">Сайт создан Картотечкой</p>
+</footer>
+
+</body>
+</html>

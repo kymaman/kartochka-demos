@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piazza Italiana — итальянский ресторан | Москва</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--warm:#D4A574;--dark:#2C1810;--bg:#FFF8F0;--accent:#E8712B;--text:#3D2B1F;--light:#F5E6D3}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text);background:var(--bg);line-height:1.6}
+a{text-decoration:none;color:inherit}
+
+.hero{position:relative;min-height:90vh;background:linear-gradient(135deg,#2C1810 0%,#5C3A21 100%);display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(212,165,116,0.1)" stroke-width="0.5"/></svg>') repeat;opacity:0.3}
+.hero-content{position:relative;z-index:1;padding:2rem}
+.hero h1{font-size:3rem;font-weight:700;margin-bottom:0.5rem;letter-spacing:0.05em}
+.hero .subtitle{font-size:1.2rem;color:var(--warm);margin-bottom:0.5rem}
+.hero .address{font-size:0.95rem;opacity:0.8;margin-bottom:2rem}
+.hero .photo-placeholder{width:280px;height:200px;background:var(--warm);border-radius:16px;margin:0 auto 2rem;display:flex;align-items:center;justify-content:center;font-size:0.9rem;color:var(--dark);opacity:0.7}
+
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:50px;font-size:1rem;font-weight:600;cursor:pointer;border:none;transition:transform 0.2s,box-shadow 0.2s}
+.btn:active{transform:scale(0.97)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{box-shadow:0 4px 20px rgba(232,113,43,0.4)}
+.btn-outline{background:transparent;color:#fff;border:2px solid var(--warm)}
+.btn-outline:hover{background:var(--warm);color:var(--dark)}
+.btn-whatsapp{background:#25D366;color:#fff}
+.btn-whatsapp:hover{box-shadow:0 4px 20px rgba(37,211,102,0.4)}
+
+section{padding:4rem 1.5rem;max-width:800px;margin:0 auto}
+.section-title{font-size:1.8rem;font-weight:700;color:var(--dark);margin-bottom:2rem;text-align:center}
+.section-title::after{content:'';display:block;width:60px;height:3px;background:var(--accent);margin:12px auto 0;border-radius:2px}
+
+.about p{font-size:1.05rem;text-align:center;color:#5C4033;max-width:600px;margin:0 auto}
+
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+.menu-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(44,24,16,0.08);transition:transform 0.2s}
+.menu-card:hover{transform:translateY(-4px)}
+.menu-card .img{height:160px;background:var(--light);display:flex;align-items:center;justify-content:center;color:var(--warm);font-size:0.85rem}
+.menu-card .info{padding:16px}
+.menu-card h3{font-size:1.05rem;margin-bottom:4px}
+.menu-card .desc{font-size:0.85rem;color:#8B7355;margin-bottom:8px}
+.menu-card .price{font-weight:700;color:var(--accent);font-size:1.1rem}
+
+.reviews{background:var(--light);padding:4rem 1.5rem;margin:0 -1.5rem}
+.reviews-inner{max-width:800px;margin:0 auto}
+.review-card{background:#fff;border-radius:16px;padding:24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+.review-card .stars{color:#F5A623;font-size:1.2rem;margin-bottom:8px}
+.review-card .text{font-size:0.95rem;color:#5C4033;margin-bottom:8px}
+.review-card .author{font-size:0.85rem;color:#8B7355;font-weight:600}
+
+.booking{text-align:center}
+.booking p{margin-bottom:2rem;color:#5C4033}
+.booking-form{display:flex;flex-direction:column;gap:12px;max-width:400px;margin:0 auto}
+.booking-form input,.booking-form select{padding:14px 18px;border:2px solid var(--light);border-radius:12px;font-size:1rem;background:#fff;color:var(--text);outline:none;transition:border-color 0.2s}
+.booking-form input:focus,.booking-form select:focus{border-color:var(--accent)}
+
+.contacts{text-align:center}
+.contacts .info-row{display:flex;flex-wrap:wrap;gap:24px;justify-content:center;margin-bottom:2rem}
+.contacts .info-item{background:#fff;padding:20px 24px;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,0.04);min-width:200px}
+.contacts .info-item .label{font-size:0.8rem;color:#8B7355;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px}
+.contacts .info-item .value{font-size:1rem;font-weight:600}
+.map-placeholder{width:100%;height:250px;background:var(--light);border-radius:16px;display:flex;align-items:center;justify-content:center;color:var(--warm);font-size:0.9rem;margin-top:2rem}
+
+footer{background:var(--dark);color:rgba(255,255,255,0.6);text-align:center;padding:2rem 1.5rem;font-size:0.85rem}
+footer a{color:var(--warm)}
+
+@media(max-width:480px){
+  .hero h1{font-size:2rem}
+  .cta-row{flex-direction:column;align-items:center}
+  .btn{width:100%;max-width:280px;justify-content:center}
+  section{padding:3rem 1rem}
+  .menu-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="photo-placeholder">📸 Фото ресторана</div>
+    <h1>Piazza Italiana</h1>
+    <p class="subtitle">Итальянский ресторан · Свежая кухня</p>
+    <p class="address">📍 Пречистенская набережная, 13, Москва</p>
+    <div class="cta-row">
+      <a href="tel:+79031222161" class="btn btn-primary">📞 Позвонить</a>
+      <a href="https://wa.me/79031222161" class="btn btn-whatsapp">💬 WhatsApp</a>
+      <a href="#booking" class="btn btn-outline">📅 Забронировать</a>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <h2 class="section-title">О нас</h2>
+  <p>Итальянский ресторан с видом на Москву-реку. Готовим из свежих продуктов по оригинальным итальянским рецептам — настоящая паста, пицца на дровах, изысканные десерты. Открыты ежедневно с 12:00 до 24:00.</p>
+</section>
+
+<section>
+  <h2 class="section-title">Наше меню</h2>
+  <div class="menu-grid">
+    <div class="menu-card">
+      <div class="img">📸 Фото блюда</div>
+      <div class="info">
+        <h3>Пицца Маргарита</h3>
+        <p class="desc">Томатный соус, моцарелла фиор ди латте, базилик</p>
+        <p class="price">690 ₽</p>
+      </div>
+    </div>
+    <div class="menu-card">
+      <div class="img">📸 Фото блюда</div>
+      <div class="info">
+        <h3>Паста Карбонара</h3>
+        <p class="desc">Спагетти, панчетта, яйцо, пармезан, чёрный перец</p>
+        <p class="price">580 ₽</p>
+      </div>
+    </div>
+    <div class="menu-card">
+      <div class="img">📸 Фото блюда</div>
+      <div class="info">
+        <h3>Ризотто с грибами</h3>
+        <p class="desc">Арборио, белые грибы, пармезан, трюфельное масло</p>
+        <p class="price">750 ₽</p>
+      </div>
+    </div>
+    <div class="menu-card">
+      <div class="img">📸 Фото блюда</div>
+      <div class="info">
+        <h3>Тирамису</h3>
+        <p class="desc">Маскарпоне, савоярди, эспрессо, какао</p>
+        <p class="price">380 ₽</p>
+      </div>
+    </div>
+    <div class="menu-card">
+      <div class="img">📸 Фото блюда</div>
+      <div class="info">
+        <h3>Брускетта с томатами</h3>
+        <p class="desc">Чиабатта, черри, базилик, оливковое масло, соль флёр де сель</p>
+        <p class="price">320 ₽</p>
+      </div>
+    </div>
+    <div class="menu-card">
+      <div class="img">📸 Фото блюда</div>
+      <div class="info">
+        <h3>Капучино</h3>
+        <p class="desc">Двойной эспрессо, молочная пенка, корица</p>
+        <p class="price">220 ₽</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="reviews">
+  <div class="reviews-inner">
+    <h2 class="section-title">Отзывы гостей</h2>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="text">«Потрясающий вид на набережную и невероятная паста! Карбонара — лучшая в городе. Обслуживание на высоте.»</p>
+      <p class="author">— Анна П.</p>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="text">«Пицца на дровах — просто объедение. Атмосфера как в Италии, персонал очень внимательный.»</p>
+      <p class="author">— Максим Р.</p>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="text">«Отмечали день рождения — всё прошло идеально. Тирамису — настоящий, как в Риме. Вернёмся обязательно!»</p>
+      <p class="author">— Елена С.</p>
+    </div>
+  </div>
+</div>
+
+<section class="booking" id="booking">
+  <h2 class="section-title">Забронировать столик</h2>
+  <p>Оставьте заявку, и мы перезвоним для подтверждения</p>
+  <form class="booking-form" onsubmit="event.preventDefault();alert('Спасибо! Мы перезвоним в ближайшее время.')">
+    <input type="text" placeholder="Ваше имя" required>
+    <input type="tel" placeholder="Телефон" required>
+    <input type="date" required>
+    <select>
+      <option>Количество гостей</option>
+      <option>1-2 гостя</option>
+      <option>3-4 гостя</option>
+      <option>5-8 гостей</option>
+      <option>Банкет (9+)</option>
+    </select>
+    <button type="submit" class="btn btn-primary" style="border:none">📅 Забронировать</button>
+  </form>
+</section>
+
+<section class="contacts">
+  <h2 class="section-title">Контакты</h2>
+  <div class="info-row">
+    <div class="info-item">
+      <p class="label">Адрес</p>
+      <p class="value">Пречистенская наб., 13</p>
+    </div>
+    <div class="info-item">
+      <p class="label">Телефон</p>
+      <p class="value"><a href="tel:+79031222161">+7 (903) 122-21-61</a></p>
+    </div>
+    <div class="info-item">
+      <p class="label">Часы работы</p>
+      <p class="value">Ежедневно 12:00 — 24:00</p>
+    </div>
+  </div>
+  <div class="map-placeholder">🗺️ Яндекс.Карта (вставить iframe)</div>
+</section>
+
+<footer>
+  <p>© 2026 Piazza Italiana · <a href="tel:+79031222161">+7 (903) 122-21-61</a></p>
+  <p style="margin-top:8px;font-size:0.75rem">Сайт создан Картотечкой</p>
+</footer>
+
+</body>
+</html>

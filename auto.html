@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>КарТехник М — автосервис | Москва</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--steel:#4A5568;--dark:#1A202C;--bg:#F7FAFC;--accent:#E53E3E;--text:#2D3748;--light:#EDF2F7;--blue:#3182CE}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text);background:var(--bg);line-height:1.6}
+a{text-decoration:none;color:inherit}
+
+.hero{position:relative;min-height:90vh;background:linear-gradient(135deg,#1A202C 0%,#2D3748 50%,#4A5568 100%);display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(255,255,255,0.01) 40px,rgba(255,255,255,0.01) 80px)}
+.hero-content{position:relative;z-index:1;padding:2rem}
+.hero h1{font-size:2.8rem;font-weight:800;letter-spacing:0.02em;margin-bottom:0.3rem}
+.hero .subtitle{font-size:1.1rem;color:var(--accent);margin-bottom:0.5rem;font-weight:600;text-transform:uppercase;letter-spacing:0.15em}
+.hero .address{font-size:0.95rem;opacity:0.7;margin-bottom:2rem}
+.hero .photo-placeholder{width:300px;height:180px;background:rgba(74,85,104,0.4);border-radius:12px;margin:0 auto 2rem;display:flex;align-items:center;justify-content:center;font-size:0.9rem;color:var(--light);border:1px solid rgba(255,255,255,0.1)}
+
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;border:none;transition:transform 0.2s,box-shadow 0.2s;text-transform:uppercase;letter-spacing:0.05em}
+.btn:active{transform:scale(0.97)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{box-shadow:0 4px 20px rgba(229,62,62,0.4)}
+.btn-outline{background:transparent;color:#fff;border:2px solid var(--steel)}
+.btn-outline:hover{background:var(--steel);color:#fff}
+.btn-whatsapp{background:#25D366;color:#fff}
+.btn-whatsapp:hover{box-shadow:0 4px 20px rgba(37,211,102,0.4)}
+
+section{padding:4rem 1.5rem;max-width:800px;margin:0 auto}
+.section-title{font-size:1.8rem;font-weight:800;color:var(--dark);margin-bottom:2rem;text-align:center;text-transform:uppercase;letter-spacing:0.05em}
+.section-title::after{content:'';display:block;width:60px;height:4px;background:var(--accent);margin:12px auto 0;border-radius:2px}
+
+.about{text-align:center}
+.about p{font-size:1.05rem;color:var(--steel);max-width:600px;margin:0 auto}
+.about .badges{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:2rem}
+.about .badge{background:var(--light);padding:12px 20px;border-radius:8px;font-size:0.9rem;font-weight:600;color:var(--dark)}
+
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.service-card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border-left:4px solid var(--accent);transition:transform 0.2s}
+.service-card:hover{transform:translateY(-3px)}
+.service-card h3{font-size:1rem;margin-bottom:8px;color:var(--dark)}
+.service-card .desc{font-size:0.85rem;color:var(--steel);margin-bottom:12px}
+.service-card .price{font-weight:700;color:var(--accent);font-size:1.1rem}
+
+.guarantees{background:var(--dark);padding:4rem 1.5rem;margin:0;color:#fff}
+.guarantees-inner{max-width:800px;margin:0 auto}
+.guarantees .section-title{color:#fff}
+.guarantees .section-title::after{background:var(--accent)}
+.guarantee-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px}
+.guarantee-item{text-align:center;padding:24px}
+.guarantee-item .icon{font-size:2.5rem;margin-bottom:12px}
+.guarantee-item h3{font-size:1rem;margin-bottom:8px}
+.guarantee-item p{font-size:0.85rem;color:rgba(255,255,255,0.6)}
+
+.reviews .review-card{background:#fff;border-radius:12px;padding:24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.04);border-left:4px solid var(--blue)}
+.reviews .stars{color:#F5A623;font-size:1.1rem;margin-bottom:8px}
+.reviews .text{font-size:0.95rem;color:var(--steel)}
+.reviews .author{font-size:0.85rem;color:var(--dark);font-weight:700;margin-top:8px}
+.reviews .car{font-size:0.8rem;color:var(--steel)}
+
+.booking{text-align:center}
+.booking p{margin-bottom:2rem;color:var(--steel)}
+.booking-form{display:flex;flex-direction:column;gap:12px;max-width:400px;margin:0 auto}
+.booking-form input,.booking-form select,.booking-form textarea{padding:14px 18px;border:2px solid var(--light);border-radius:8px;font-size:1rem;background:#fff;color:var(--text);outline:none;transition:border-color 0.2s;font-family:inherit}
+.booking-form input:focus,.booking-form select:focus,.booking-form textarea:focus{border-color:var(--accent)}
+
+.contacts{text-align:center}
+.contacts .info-row{display:flex;flex-wrap:wrap;gap:24px;justify-content:center;margin-bottom:2rem}
+.contacts .info-item{background:#fff;padding:20px 24px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.04);min-width:200px;border-top:3px solid var(--accent)}
+.contacts .info-item .label{font-size:0.8rem;color:var(--steel);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px}
+.contacts .info-item .value{font-size:1rem;font-weight:700}
+.map-placeholder{width:100%;height:250px;background:var(--light);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--steel);font-size:0.9rem;margin-top:2rem}
+
+footer{background:var(--dark);color:rgba(255,255,255,0.5);text-align:center;padding:2rem 1.5rem;font-size:0.85rem}
+footer a{color:var(--accent)}
+
+@media(max-width:480px){
+  .hero h1{font-size:2rem}
+  .cta-row{flex-direction:column;align-items:center}
+  .btn{width:100%;max-width:280px;justify-content:center}
+  section{padding:3rem 1rem}
+  .services-grid,.guarantee-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="photo-placeholder">📸 Фото автосервиса</div>
+    <h1>КарТехник М</h1>
+    <p class="subtitle">Профессиональный автосервис</p>
+    <p class="address">📍 ул. Рябиновая, 28, Москва</p>
+    <div class="cta-row">
+      <a href="tel:+74992834279" class="btn btn-primary">📞 Позвонить</a>
+      <a href="https://wa.me/7XXXXXXXXXX" class="btn btn-whatsapp">💬 WhatsApp</a>
+      <a href="#booking" class="btn btn-outline">🔧 Записаться</a>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <h2 class="section-title">О сервисе</h2>
+  <p>Полный спектр услуг по ремонту и обслуживанию автомобилей. Работаем с 2015 года, обслужили более 5 000 машин. Используем оригинальные запчасти и даём гарантию на все работы.</p>
+  <div class="badges">
+    <div class="badge">🏆 8 лет опыта</div>
+    <div class="badge">✅ Гарантия 12 мес</div>
+    <div class="badge">🔧 Оригинальные запчасти</div>
+    <div class="badge">📋 Диагностика от 0 ₽</div>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Виды работ и цены</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <h3>Диагностика</h3>
+      <p class="desc">Компьютерная диагностика двигателя, ходовой, АКПП</p>
+      <p class="price">от 0 ₽</p>
+    </div>
+    <div class="service-card">
+      <h3>ТО по регламенту</h3>
+      <p class="desc">Замена масла, фильтров, свечей, тормозной жидкости</p>
+      <p class="price">от 3 500 ₽</p>
+    </div>
+    <div class="service-card">
+      <h3>Ремонт ходовой</h3>
+      <p class="desc">Замена рычагов, стоек, шаровых, сайлентблоков</p>
+      <p class="price">от 2 000 ₽</p>
+    </div>
+    <div class="service-card">
+      <h3>Ремонт двигателя</h3>
+      <p class="desc">Капремонт, замена ГРМ, прокладок, помпы</p>
+      <p class="price">от 5 000 ₽</p>
+    </div>
+    <div class="service-card">
+      <h3>Тормозная система</h3>
+      <p class="desc">Замена колодок, дисков, суппортов, прокачка</p>
+      <p class="price">от 1 500 ₽</p>
+    </div>
+    <div class="service-card">
+      <h3>Кондиционер</h3>
+      <p class="desc">Заправка, диагностика утечек, замена компрессора</p>
+      <p class="price">от 2 500 ₽</p>
+    </div>
+    <div class="service-card">
+      <h3>Электрика</h3>
+      <p class="desc">Диагностика, ремонт генератора, стартера, проводки</p>
+      <p class="price">от 1 500 ₽</p>
+    </div>
+    <div class="service-card">
+      <h3>Шиномонтаж</h3>
+      <p class="desc">Сезонная замена, балансировка, ремонт проколов</p>
+      <p class="price">от 1 800 ₽</p>
+    </div>
+  </div>
+</section>
+
+<div class="guarantees">
+  <div class="guarantees-inner">
+    <h2 class="section-title">Гарантии</h2>
+    <div class="guarantee-grid">
+      <div class="guarantee-item">
+        <div class="icon">📋</div>
+        <h3>Договор на все работы</h3>
+        <p>Официальный документ с перечнем работ и запчастей</p>
+      </div>
+      <div class="guarantee-item">
+        <div class="icon">🛡️</div>
+        <h3>Гарантия 12 месяцев</h3>
+        <p>На все виды работ и установленные запчасти</p>
+      </div>
+      <div class="guarantee-item">
+        <div class="icon">📸</div>
+        <h3>Фотоотчёт</h3>
+        <p>Присылаем фото до и после ремонта в мессенджер</p>
+      </div>
+      <div class="guarantee-item">
+        <div class="icon">💰</div>
+        <h3>Фиксированная цена</h3>
+        <p>Озвучиваем стоимость до начала работ, без сюрпризов</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="reviews">
+  <h2 class="section-title">Отзывы</h2>
+  <div class="review-card">
+    <div class="stars">★★★★★</div>
+    <p class="text">«Менял ГРМ на Тигуане. Сделали за день, цена адекватная, всё объяснили. Рекомендую!»</p>
+    <p class="author">— Сергей П.</p>
+    <p class="car">VW Tiguan 2019</p>
+  </div>
+  <div class="review-card">
+    <div class="stars">★★★★★</div>
+    <p class="text">«Приезжал на диагностику ходовой — нашли проблему быстро, не навязывали лишнего. Честный сервис.»</p>
+    <p class="author">— Андрей К.</p>
+    <p class="car">Toyota Camry 2020</p>
+  </div>
+  <div class="review-card">
+    <div class="stars">★★★★☆</div>
+    <p class="text">«Делали ТО и кондиционер. Всё хорошо, только немного задержали по времени. В остальном — всё супер.»</p>
+    <p class="author">— Михаил Д.</p>
+    <p class="car">Kia Sportage 2021</p>
+  </div>
+</section>
+
+<section class="booking" id="booking">
+  <h2 class="section-title">Запись на диагностику</h2>
+  <p>Оставьте заявку — мы перезвоним и согласуем удобное время</p>
+  <form class="booking-form" onsubmit="event.preventDefault();alert('Спасибо! Мы перезвоним для подтверждения записи.')">
+    <input type="text" placeholder="Ваше имя" required>
+    <input type="tel" placeholder="Телефон" required>
+    <input type="text" placeholder="Марка и модель авто">
+    <select>
+      <option>Тип работ</option>
+      <option>Диагностика</option>
+      <option>ТО по регламенту</option>
+      <option>Ремонт ходовой</option>
+      <option>Ремонт двигателя</option>
+      <option>Тормозная система</option>
+      <option>Кондиционер</option>
+      <option>Электрика</option>
+      <option>Шиномонтаж</option>
+      <option>Другое</option>
+    </select>
+    <input type="date" required>
+    <textarea placeholder="Опишите проблему (необязательно)" rows="3"></textarea>
+    <button type="submit" class="btn btn-primary" style="border:none">🔧 Записаться</button>
+  </form>
+</section>
+
+<section class="contacts">
+  <h2 class="section-title">Контакты</h2>
+  <div class="info-row">
+    <div class="info-item">
+      <p class="label">Адрес</p>
+      <p class="value">ул. Рябиновая, 28</p>
+    </div>
+    <div class="info-item">
+      <p class="label">Телефон</p>
+      <p class="value"><a href="tel:+74992834279">+7 (499) 283-42-79</a></p>
+    </div>
+    <div class="info-item">
+      <p class="label">Часы работы</p>
+      <p class="value">Пн-Сб 9:00 — 20:00</p>
+    </div>
+  </div>
+  <div class="map-placeholder">🗺️ Яндекс.Карта (вставить iframe)</div>
+</section>
+
+<footer>
+  <p>© 2026 КарТехник М · <a href="tel:+74992834279">+7 (499) 283-42-79</a></p>
+  <p style="margin-top:8px;font-size:0.75rem">Сайт создан Картотечкой</p>
+</footer>
+
+</body>
+</html>
